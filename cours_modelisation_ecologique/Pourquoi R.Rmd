@@ -1,0 +1,71 @@
+---
+title: "Modélisation écologique"
+output:
+  beamer_presentation: default
+  ioslides_presentation: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Pourquoi utiliser R?
+
+**R est un open source** :
+
+> - Il est gratuit.
+> - Il permet aux utilisateurs d’examiner, de modifier et d’améliorer le code source et surtout de partager ces changements avec les autres. 
+> - Très grande communauté. Il est facile de trouver des solutions ou des exemples en ligne.
+
+## Pourquoi utiliser R?
+
+**R est flexible et extensible** :
+
+> - Les logiciels statistiques classiques constituent des boîtes à outils ayant un ensemble prédéfini d’analyses pouvant être faites. Ils ne sont donc pas toujours adaptés à des besoins spécifiques des utilisateurs. 
+> - R est extensible grâce à des packages : un package est une collection regroupant des outils d'une même thématique.
+> - R permet d’automatiser les tâches avec des scripts. 
+> - un logiciel multi-plates-formes
+
+## Pourquoi utiliser R?
+
+**R est un langage interprété** :
+
+> - R est un langage interprété et non compilé, c'est-à-dire que les commandes tapées au clavier sont directement exécutées 
+> - La syntaxe de R est très simple et intuitive. 
+
+## Pourquoi utiliser R?
+
+**Les graphiques sur R** :
+
+> - R offre une grande variété de graphiques. 
+> - Des graphiques de haute qualité
+
+## Courbe d'apprentissage
+
+## Courbe d'apprentissage
+
+```{r learning_curve1, echo=F}
+logistic <- function(x) {
+  y <- 1 / (1+(5/x))
+  y <- y*100
+  return(y)
+} 
+
+curve(logistic, from = 1, to = 100, xlab = "Temps", ylab = "Compétence", 
+      main = "Courbe d'apprentissage: Logiciels à interface graphique", bty = "l", lwd = 2, col="blue")
+```
+
+## Courbe d'apprentissage
+
+```{r learning_curve2, echo=F}
+curve((exp(x/10))/200,from = 1, to = 100, xlab = "Temps", ylab = "Compétence", 
+      main = "Courbe d'apprentissage: Language de programmation", bty = "l", lwd = 2, col="blue")
+```
+
+## Télécharger R et RStudio
+
+<https://www.r-project.org/>
+
+<https://www.rstudio.com/>

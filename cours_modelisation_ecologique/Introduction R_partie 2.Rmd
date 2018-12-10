@@ -1,0 +1,278 @@
+---
+title: "Introduction à R partie 2"
+output:
+  beamer_presentation: default
+  ioslides_presentation: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# L'organisation des données sous R
+## Les vecteurs
+
+```{r vecteur1}
+v <- 1:10 
+```
+
+## Les vecteurs
+```{r vecteur2}
+v1 <- seq(from=3, to=21, by=2)
+```
+
+## Les vecteurs
+```{r vecteur3}
+v2 <- seq(from=2, by=3, length=10) 
+```
+
+## Les vecteurs
+```{r vecteur4}
+v3 <- seq(from=1, to=50, length=100) 
+```
+
+## Les vecteurs
+```{r vecteur41}
+v4 <- rep(1:2, times=3)
+
+v5 <- rep(1:2, each=3)
+```
+
+## Les vecteurs
+
+```{r vecteur5}
+length(v1)
+
+mean(v2)
+
+sd(v3)
+```
+
+## Les vecteurs
+
+\tiny
+```{r vecteur51}
+exp(v1)
+
+log(v2)
+```
+
+## Les vecteurs
+Quelques fonctions sur les vecteurs
+
+\tiny
+```{r vecteurs52}
+v7 <- rep(v2, times = 3)
+
+# classer
+sort(v7) 
+
+rev(v7)
+```
+
+## Les vecteurs
+Quelques fonctions sur les vecteurs
+
+```{r vecteurs53}
+# compter le nombre d'occurence de chaque valeur
+table(v7) 
+
+# extraire les valeurs uniques
+unique(v7)
+```
+
+## Les vecteurs
+
+Un vecteur de chaine de caractères
+
+```{r vecteur6}
+ch1 <- c("traitement_1")
+
+ch2 <- c("traitement_2", "traitement_3")
+
+ch3 <- c(ch1, ch2)
+
+length(ch3)
+```
+
+## Les tableaux (dataframe)
+
+```{r df1}
+df1 <- data.frame(v1, v2, v3)
+
+df2 <- data.frame(ch1, ch2)
+
+df3 <- data.frame(v=1:4, ch=c("a","b","b","c"), n=10)
+```
+
+## Les tableaux (dataframe)
+
+```{r df2}
+x <- c(1:10)
+
+y <- c(2:11)
+
+df4 <- cbind(x,y)
+
+df5 <- rbind(x,y)
+
+# ajouter les intitulés des colonnes
+colnames(df4) <- ch2 
+```
+
+## Les matrices (matrix)
+
+```{r matrix1}
+m <- matrix(1:12, nrow=4, ncol=3)
+
+m1 <- m+1
+
+m2 <- m*2
+
+m3 <- t(m2) # transposé d'une matrice
+
+m4 <- m1*m2
+```
+
+## Les matrices (matrix)
+
+```{r matrix2}
+dim(m2)
+
+dim(m3)
+
+sum(m) 
+
+mean(m) 
+```
+
+##
+
+```{r class}
+class(v)
+
+class(df1)
+
+class(m)
+```
+
+## Indexation
+### Indexation des vecteurs
+
+\tiny
+```{r indexation1}
+x<-1:20*pi
+
+x[10] #le 10ème élément de l'objet x
+
+x[-1] #tous les éléments de x sauf le premier
+```
+
+## Indexation
+### Indexation des vecteurs
+
+```{r indexation2}
+x[1:10] 
+
+x[c(1, 4, 2)] 
+
+x[c(5:10, 15:20)]
+```
+
+## Indexation
+### Indexation des matrices
+
+```{r indexation3}
+m[1,2] #l'élément de la ligne i, colonne j
+```
+
+## Indexation
+### Indexation des matrices
+
+```{r indexation31}
+m[1,] #toute la ligne i
+
+m[,2] #toute la colonne j
+
+m[,c(1,3)] #les colonnes 1 et 3
+```
+
+## Indexation
+### Indexation des dataframes
+
+Les matrices et les dataframes sont indexés de la même façon.
+
+```{r indexation4}
+df3[["ch"]] # les éléments de la colonne nommée "ch"
+
+df3$ch
+```
+
+## Sélection des éléments
+### Dans un vecteur
+
+- Sélection des éléments de x suivant des critères:
+
+```{r selection1}
+x[x>10] 
+
+x[x>10 & x<16] 
+```
+
+## Sélection des éléments
+### Dans un tableau
+
+- Sélection des éléments du tableau $data$ suivant des critères:
+
+```{r selection2}
+data <- read.csv("data/data_poisson.csv")
+
+data_demersal <- subset(data, position == "demersal")
+
+newdata <- subset(data, groupe=="poisson" & life_span > 5)
+```
+
+## Sélection des éléments
+### Dans un tableau
+
+- Remplacer une valeur dans un tableau
+
+```{r selection3}
+data2 <- data
+
+data2$life_span[data2$life_span==2] <- 1000   
+```
+
+## Fonctions mathématiques
+
+```{r math1}
+x<-m[1,]*pi
+y<-m[2,]/pi
+
+max(x) 
+min(x) 
+range(x) 
+```
+
+## Fonctions mathématiques
+
+```{r math2}
+sum(x) 
+prod(x) 
+mean(x) 
+median(x) 
+quantile(x)
+```
+
+## Fonctions mathématiques
+
+```{r math3}
+rank(x) 
+var(x) 
+cor(x, y) 
+round(x, 2) 
+```
+
+

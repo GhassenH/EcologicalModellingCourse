@@ -1,0 +1,123 @@
+---
+title: "Introduction à R partie 1"
+output:
+  beamer_presentation: default
+  ioslides_presentation: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+## Les fonctions basiques de R
+### Calculatrice
+
+```{r calculatice1}
+4+8 
+```
+
+### Calculatrice
+
+```{r calculatice2}
+(6+5*2)/2-3.5 
+```
+
+### Calculatrice
+
+Le symbole **#** sert à commenter les lignes de code. 
+
+```{r calculatice3}
+2^2 # Puissance 
+```
+
+### Calculatrice
+
+```{r calculatice31}
+pi^3
+```
+
+### Calculatrice
+
+```{r calculatice32}
+sqrt (9) # Racine carrée (square root)
+```
+ 
+### Calculatrice
+
+```{r calculatice4}
+log (10)
+```
+
+### Calculatrice
+
+```{r calculatice41}
+exp(10)
+```
+
+### Calculatrice
+
+```{r calculatice42}
+exp(log(10))
+```
+
+### Affectation
+
+```{r calculatice5}
+n <- sqrt(100)
+```
+
+### Affectation
+
+```{r calculatice51}
+log(n)
+```
+
+```{r calculatice53}
+n <- n^2
+n
+```
+
+### Le répertoire de travail
+
+```{r wd1, eval=F}
+# définir le répertoire de travail
+setwd("home/ghassen/Work/Teaching/Cours/INAT/
+      Modélisation écologique 2018/
+      cours_modelisation_ecologique") 
+```
+
+> - une autre façon de définir le répertoire de travail est d'utiliser la fonction **Projet** dans RStudio
+
+### Le répertoire de travail
+Lister les fichiers du répertoire de travail
+
+```{r wd2, eval=F}
+dir() 
+```
+
+### Le répertoire de travail
+
+Afficher le chemin du répertoire de travail
+
+```{r wd3, eval=F}
+getwd() 
+```
+
+### Lecture des données
+
+```{r read_data}
+data <- read.csv("data/data_poisson.csv")
+data <- read.csv("data/data_poisson.csv", row.names=1)
+```
+
+### Affichage des données
+
+```{r read_data2, eval=F}
+head(data)
+fix(data)
+summary(data)
+na.omit(data)
+```
+

@@ -1,0 +1,168 @@
+---
+title: "Introduction à R partie 3"
+output:
+  beamer_presentation: default
+  ioslides_presentation: default
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Générer des données
+
+```{r generate.data1}
+norm<-rnorm(1000, mean=5, sd=10) #Loi normale 
+```
+
+## Générer des données
+
+```{r generate.data1.1}
+hist(norm, breaks = 8)
+```
+
+## Générer des données
+
+```{r generate.data2}
+unif<-runif(1000, min=5, max=10) #Loi uniforme 
+```
+
+## Générer des données
+
+```{r generate.data2.1}
+hist(unif)
+```
+
+## Manipulation des données
+
+```{r fake1}
+tableau <- matrix(c(84, 97, 60, 55, 40, 75, 45, 45, 96), 
+                  ncol=3)
+
+rownames(tableau) <- c("Site1", "Site2", "Site3")
+
+colnames(tableau) <- c("sp1","sp2","sp3")
+```
+
+## Enregistrer les sorties 
+
+```{r save1}
+write.csv(tableau, file="My_Data.csv")
+```
+
+## Manipulation des données
+
+```{r fake2}
+tab1 <- apply(tableau, 1, sum)
+
+tab2 <- apply(tableau, 2, mean)
+
+tab3 <- apply(tableau, 2, function(x) x/2)
+```
+
+## Manipulation des données
+
+```{r fake3}
+coef <- c(2, 0, 1)
+
+tab4 <- apply(tableau, 2, function(x) x/coef)
+```
+
+## Exercices 1
+
+- Calculer la biomasse moyenne de sp1 et sp2
+- Calculer la somme des biomasses dans les 3 sites
+
+## Exercices 2
+
+1/ créer un vecteur *taille_poisson* composé de 100 observations ayant une distribution normale et de taille moyenne de 15 cm 
+
+2/ créer un vecteur *poids_poisson* composé de 100 observations. Les poids des poissons doivent être calculer à partir de l'équation de croissance de Von Bertlanfy avec $L_{inf} = 22$ et $t_0 = 0.2$
+
+3/ Créer un tableau avec les données de taille et de poids et enregistrer le dans répertoire courant en format *csv* sous le nom *data_poisson*  
+
+4/ Faire une figure qui présente le poids en fonction de la taille du poisson en utilisons le fonction *plot* 
+
+## Les plots sur R
+
+```{r plot1}
+mosaicplot(tableau)
+
+mosaicplot(tableau, col=c("tomato1","skyblue","orange2"))
+```
+
+## Les plots sur R
+
+```{r plot2}
+mosaicplot(t(tableau), main = "Nombre d'observations")
+```
+
+## Les plots sur R
+
+```{r plot21}
+mosaicplot(t(tableau), col=c("red", "yellow", "blue"),  
+           main = "Nombre d'observations")
+```
+
+## Les plots sur R
+
+```{r plot3, fig.height=6}
+barplot(tableau)
+legend("top", legend=rownames(tableau), 
+       fill=c("white", "grey", "grey50"), 
+       ncol = 3, bty = "n") 
+```
+
+## Les plots sur R
+
+```{r plot3.1, fig.height=6}
+barplot(t(tableau))
+legend("top", legend=colnames(tableau), 
+       fill=c("white", "grey", "grey50"), 
+       ncol = 3, bty = "n") 
+```
+
+## Les plots sur R
+
+```{r plot4}
+barplot(tableau[,1], main = "Nombre d'observation de sp1")
+```
+
+## Les plots sur R
+
+```{r plot5}
+image(tableau)
+```
+
+## Les plots sur R
+
+Sauvegarder une figure en format pdf
+
+```{r plot4.2, fig.height=6, eval=F}
+pdf("My_First_Plot.pdf")
+barplot(tableau[1,], main = "Nombre d'observation dans le site1",
+        col=c("hotpink", "sandybrown", "turquoise"), 
+        border=NA)
+dev.off()
+```
+
+## Les boucles dans R
+
+```{r loop1}
+for (i in 1:10){
+  print(i)
+}
+```
+
+## Les boucles dans R
+
+```{r loop2}
+j <- rep(NA, 10)
+for (i in 1:10){
+  j[i] <- 3*i^2
+  print(j)
+}
+```
